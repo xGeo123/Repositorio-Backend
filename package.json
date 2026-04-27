@@ -19,7 +19,8 @@
     "colors": "^1.4.0",
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
-    "express": "^4.22.1"
+    "express": "^4.22.1",
+    "mongoose": "^9.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
