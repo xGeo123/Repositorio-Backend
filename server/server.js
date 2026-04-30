@@ -9,7 +9,7 @@ export default class Server {
         this.port = process.env.PORT || 3000;
         this.generalRoute = '/api/';
         
-        // CORRECCIÓN: El nombre debe coincidir con el método definido abajo
+       
         this.conectarDB(); 
         
         this.middlewares();
@@ -17,7 +17,7 @@ export default class Server {
     }
 
     async conectarDB() {
-        // Verifica si ya existe una conexión antes de intentar conectar
+        
         if (!db.isConected) {
             await db.conectarAMongoDB();
         }
@@ -32,11 +32,16 @@ export default class Server {
     routes() {
         // localhost:3001/api/
         this.app.use(this.generalRoute, indexRoutes);
+        this.app.use('**', (req, res) => {
+            res.status(404).json({
+                msg: 'ruta no encontrado'
+            });
+        })
     }
 
     listen() {
         this.app.listen(this.port, () => {
-            console.log(`Servidor corriendo en puerto ${this.port}`.green);
+            console.log(`Servidor corriendo en puerto ${this.port}`.yellow);
         });   
     }
 }
